@@ -45,7 +45,7 @@ final class FilterUsingXForwardedHeadersFactory
         assert(is_array($appConfig) || $appConfig instanceof ArrayAccess);
         $config = $appConfig[ConfigProvider::DIACTOROS_CONFIG_KEY][ConfigProvider::DIACTOROS_SERVER_REQUEST_FILTER_CONFIG_KEY][ConfigProvider::DIACTOROS_X_FORWARDED_FILTER_CONFIG_KEY] ?? [];
         // phpcs:enable Generic.Files.LineLength.TooLong
-        if (! is_array($config) || empty($config)) {
+        if (! is_array($config) || $config === []) {
             // Trust nothing!
             return FilterUsingXForwardedHeaders::trustProxies([], []);
         }

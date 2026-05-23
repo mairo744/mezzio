@@ -76,11 +76,9 @@ class WhoopsFactory
             $handler->addTraceToOutput(true);
         }
 
-        if (! empty($config['json_exceptions']['ajax_only'])) {
-            // Don't push handler on stack unless we are in a XHR request.
-            if (! WhoopsUtil::isAjaxRequest()) {
-                return;
-            }
+        // Don't push handler on stack unless we are in a XHR request.
+        if (! empty($config['json_exceptions']['ajax_only']) && ! WhoopsUtil::isAjaxRequest()) {
+            return;
         }
 
         $whoops->pushHandler($handler);

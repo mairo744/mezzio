@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Rector\CodeQuality\Rector\Identical\FlipTypeControlToUseExclusiveTypeRector;
 use Rector\Config\RectorConfig;
 
 return RectorConfig::configure()
@@ -12,7 +13,11 @@ return RectorConfig::configure()
         __DIR__ . '/test',
     ])
     ->withPreparedSets(
+        codeQuality: true,
         typeDeclarations: true,
         privatization: true,
     )
+    ->withSkip([
+        FlipTypeControlToUseExclusiveTypeRector::class,
+    ])
     ->withSkipPath(__DIR__ . '/test/TestAsset');
